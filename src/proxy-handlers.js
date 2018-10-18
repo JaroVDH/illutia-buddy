@@ -18,9 +18,7 @@ function toCommandStrings(cb) {
 function commandHandler(commandString, remoteSocket, localSocket) {
 	for (let commandName in commandDefinitions) {
 		if (commandDefinitions[commandName].identifier.test(commandString)) {
-			let command = commandDefinitions[commandName].fromCommandString(commandString);
-
-			console.log('Created ‘%s’ command', commandName, command);
+			const command = commandDefinitions[commandName].fromCommandString(commandString);
 
 			processCommand(command, remoteSocket, localSocket);
 		}
