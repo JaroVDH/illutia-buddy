@@ -1,7 +1,7 @@
 const { commandSeparator, ...commandDefinitions } = require('./commands');
 const processCommand = require('./command-processor');
 
-function toCommandStrings(processCommand) {
+function toCommandStrings(cb) {
 	let dataBuffer = "";
 
 	return (data, remoteSocket, localSocket) => {
@@ -10,14 +10,14 @@ function toCommandStrings(processCommand) {
 		dataBuffer = chunks.pop();
 
 		for (let idx in chunks) {
-			processCommand(chunks[idx], remoteSocket, localSocket);
+			cb(chunks[idx], remoteSocket, localSocket);
 		}
 	}
 }
 
 function commandHandler(commandString, remoteSocket, localSocket) {
 	for (let commandName in commandDefinitions) {
-		if (commandDefinitions[commandName].indentifier.test(commandString)) {
+		if (commandDefinitions[commandName].identifier.test(commandString)) {
 			let command = commandDefinitions[commandName].fromCommandString(commandString);
 
 			console.log('Created ‘%s’ command', commandName, command);
