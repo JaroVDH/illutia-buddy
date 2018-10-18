@@ -1,14 +1,14 @@
 class ItemDrop {
-	constructor(a, b, c, d, e, g, name, i, j, k, l, m, n) {
+	constructor(a, b, c, xPos, yPos, g, name, i, quantity, k, l, m, n) {
 		this.a = a;
 		this.b = b;
 		this.c = c;
-		this.d = d;
-		this.e = e;
+		this.xPos = xPos;
+		this.yPos = yPos;
 		this.g = g;
 		this.name = name;
 		this.i = i;
-		this.j = j;
+		this.quantity = quantity;
 		this.k = k;
 		this.l = l;
 		this.m = m;
@@ -26,12 +26,12 @@ class ItemDrop {
 			this.a,
 			this.b,
 			this.c,
-			this.d,
-			this.e,
+			this.xPos,
+			this.yPos,
 			this.g,
 			this.name,
 			this.i,
-			this.j,
+			this.quantity,
 			this.k,
 			this.l,
 			this.m,
@@ -40,6 +40,6 @@ class ItemDrop {
 	}
 }
 
-ItemDrop.identifier = /^DOB[0-9]+$/;
+ItemDrop.identifier = /^DOB[0-9]+/;
 
 module.exports = ItemDrop;
