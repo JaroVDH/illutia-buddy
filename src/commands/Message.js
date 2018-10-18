@@ -14,5 +14,12 @@ class Message {
 }
 
 Message.identifier = /^\$[0-9].*/;
+Message.types = {
+	black: 1,
+	yellow: 2,
+	purple: 3,
+	blue: 6,
+	green: 7,
+};
 
 module.exports = Message;

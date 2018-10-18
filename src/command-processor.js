@@ -22,7 +22,7 @@ function processCommand(command, remoteSocket, localSocket) {
 		case ItemDrop: {
 			for (let idx in notifyOnItem) {
 				if (command.name.indexOf(notifyOnItem[idx]) !== -1) {
-					const message = new Message(Math.floor(Math.random() * 10), `‘${command.name}‘ dropped!`);
+					const message = new Message(Message.types.blue, `${command.name} nearby!`);
 
 					writeToLocal(message.toCommandString());
 				}
