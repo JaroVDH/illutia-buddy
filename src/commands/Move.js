@@ -1,6 +1,4 @@
 class Move {
-	static identifier = /^M([0-4])$/;
-
 	constructor(direction) {
 		this.direction = direction;
 	}
@@ -15,5 +13,6 @@ class Move {
 		return `M${this.direction}`;
 	}
 }
+Move.identifier = /^M([0-4])$/;
 
 module.exports = Move;

@@ -1,6 +1,4 @@
 class MakeItemDrop {
-	static identifier = /^MIK([0-4]+),([^,]+)$/;
-
 	constructor(item, name) {
 		this.item = item;
 		this.name = name;
@@ -16,5 +14,6 @@ class MakeItemDrop {
 		return `MIK${this.item},${this.name}`;
 	}
 }
+MakeItemDrop.identifier = /^MIK([0-4]+),([^,]+)$/;
 
 module.exports = MakeItemDrop;

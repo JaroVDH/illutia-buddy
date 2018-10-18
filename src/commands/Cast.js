@@ -1,6 +1,4 @@
 class Cast {
-	static identifier = /^CAST([0-9]+)$/;
-
 	constructor(spellId) {
 		this.spellId = spellId;
 	}
@@ -15,5 +13,6 @@ class Cast {
 		return `CAST${this.spellId}`;
 	}
 }
+Cast.identifier = /^CAST([0-9]+)$/;
 
 module.exports = Cast;

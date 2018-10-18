@@ -1,4 +1,4 @@
-const { ...commandDefinitions, commandSeparator } = require('./commands');
+const { commandSeparator, ...commandDefinitions } = require('./commands');
 const processCommand = require('./command-processor');
 
 function toCommandStrings(processCommand) {

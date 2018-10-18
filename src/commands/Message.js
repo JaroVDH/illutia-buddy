@@ -1,6 +1,4 @@
 class Message {
-	static identifier = /^;(.*)$/;
-
 	constructor(text) {
 		this.text = text;
 	}
@@ -15,5 +13,6 @@ class Message {
 		return `;${this.text}`;
 	}
 }
+Message.identifier = /^;(.*)$/;
 
 module.exports = Message;

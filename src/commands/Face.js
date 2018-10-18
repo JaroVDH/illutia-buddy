@@ -1,6 +1,4 @@
 class Face {
-	static identifier = /^F([0-4])$/;
-
 	constructor(direction) {
 		this.direction = direction;
 	}
@@ -15,5 +13,6 @@ class Face {
 		return `F${this.direction}`;
 	}
 }
+Face.identifier = /^F([0-4])$/;
 
 module.exports = Face;
