@@ -1,8 +1,9 @@
 class ItemDrop {
-	constructor(a, b, c, xPos, yPos, g, name, i, quantity, k, l, m, n) {
+	constructor(a, b, c, d, xPos, yPos, g, name, i, quantity, k, l, m, n) {
 		this.a = a;
 		this.b = b;
 		this.c = c;
+		this.d = d;
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.g = g;
@@ -26,6 +27,7 @@ class ItemDrop {
 			this.a,
 			this.b,
 			this.c,
+			this.d,
 			this.xPos,
 			this.yPos,
 			this.g,
