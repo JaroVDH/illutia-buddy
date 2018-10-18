@@ -1,4 +1,4 @@
-const { commandSeparator, MakeItemDrop, Message } = require('./commands');
+const { commandSeparator, ItemDrop, Message } = require('./commands');
 const { notifyOnItem } = require('../config');
 
 function processCommand(command, remoteSocket, localSocket) {
@@ -19,7 +19,7 @@ function processCommand(command, remoteSocket, localSocket) {
 	}
 
 	switch (command.constructor) {
-		case MakeItemDrop: {
+		case ItemDrop: {
 			for (let idx in notifyOnItem) {
 				if (command.name.indexOf(notifyOnItem[idx]) !== -1) {
 					const message = new Message(`‘${command.name}‘ dropped!`);
