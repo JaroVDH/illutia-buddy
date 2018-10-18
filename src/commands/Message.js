@@ -1,18 +1,18 @@
 class Message {
-	constructor(text) {
+	constructor(type, text) {
+		this.type = type;
 		this.text = text;
 	}
 
 	static fromCommandString(commandString) {
-		const match = commandString.match(this.identifier);
-
-		return new this(match[1]);
+		return new this(commandString.substr(0, 1), commandString.substr(2));
 	}
 
 	toCommandString() {
-		return `;${this.text}`;
+		return `$${this.type}${this.text}`;
 	}
 }
-Message.identifier = /^;(.*)$/;
+
+Message.identifier = /^\$[0-9].*/;
 
 module.exports = Message;
