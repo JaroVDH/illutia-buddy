@@ -1,4 +1,4 @@
-import proxyHandlers from '../src/proxy-handlers';
+const proxyHandlers = require('../src/proxy-handlers');
 
 const mockSocket = {
 	write: (...args) => {

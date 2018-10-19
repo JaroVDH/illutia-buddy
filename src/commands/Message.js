@@ -22,4 +22,4 @@ Message.types = {
 	green: 7,
 };
 
-export default Message;
+module.exports = Message;

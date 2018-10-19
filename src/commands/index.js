@@ -1,14 +1,15 @@
-import Cast from './Cast';
-import Face from './Face';
-import ItemDrop from './ItemDrop';
-import Message from './Message';
-import Move from './Move';
-import SystemMessage from './SystemMessage';
-import Talk from './Talk';
+const Cast = require('./Cast');
+const Face = require('./Face');
+const ItemDrop = require('./ItemDrop');
+const Message = require('./Message');
+const Move = require('./Move');
+const SystemMessage = require('./SystemMessage');
+const Talk = require('./Talk');
 
-export const commandSeparator = String.fromCharCode(0x01);
+const commandSeparator = String.fromCharCode(0x01);
 
-export default {
+module.exports = {
+	commandSeparator,
 	Cast,
 	Face,
 	ItemDrop,

@@ -1,5 +1,5 @@
-import processCommand from './command-processor';
-import commands, { commandSeparator } from './commands';
+const processCommand = require('./command-processor');
+const { commandSeparator, ...commands } = require('./commands');
 
 function toCommandStrings(cb) {
 	let dataBuffer = "";
@@ -25,7 +25,7 @@ function commandHandler(commandString, remoteSocket, localSocket) {
 	}
 }
 
-export default {
+module.exports = {
 	processToRemoteData: toCommandStrings(commandHandler),
 	processToLocalData: toCommandStrings(commandHandler),
 	onConnect: (e) => console.log('onConnect', e),

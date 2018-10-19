@@ -1,13 +1,13 @@
-import fs from 'fs';
-import config from '../config';
+const fs = require('fs');
+const config = require('../config');
 
 const { proxyHost, proxyPort, configFileName, gameDir } = config;
-const serverHostRegex = /IP=([^\n\r]+)/;
+const serverAddressRegex = /IP=(.+)/;
 const serverPortRegex = /Port=([0-9]+)/;
 
-let serverHost, serverPort;
+let serverAddress, serverPort;
 
-export function setUp() {
+function setUp() {
 	return new Promise((resolve, fail) => {
 		fs.copyFileSync(gameDir + configFileName, gameDir + configFileName + '.default', fs.constants.COPYFILE_FICLONE);
 
@@ -16,24 +16,30 @@ export function setUp() {
 				return fail(err);
 			}
 
-			serverHost = data.match(serverHostRegex)[1];
+			serverAddress = data.match(serverAddressRegex)[1];
 			serverPort = data.match(serverPortRegex)[1];
 
 			let result = data
-				.replace(serverHostRegex, proxyHost)
-				.replace(serverPortRegex, proxyPort);
+				.replace(serverAddressRegex, `IP=${proxyHost}`)
+				.replace(serverPortRegex, `Port=${proxyPort}`);
 
 			fs.writeFile(gameDir + configFileName, result, 'utf8', function(err) {
 				if (err) {
 					return fail(err);
 				}
 
-				resolve({ serverHost, serverPort });
+				resolve({ serverAddress, serverPort });
 			});
 		});
 	});
 }
 
-export function cleanUp() {
+function cleanUp() {
 	fs.copyFileSync(gameDir + configFileName + '.default', gameDir + configFileName, fs.constants.COPYFILE_FICLONE);
+	fs.unlinkSync(gameDir + configFileName + '.default');
 }
+
+module.exports = {
+	setUp,
+	cleanUp,
+};

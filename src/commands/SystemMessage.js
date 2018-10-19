@@ -17,4 +17,4 @@ class SystemMessage {
 
 SystemMessage.identifier = /^\^[0-9]+,.*/;
 
-export default SystemMessage;
+module.exports = SystemMessage;

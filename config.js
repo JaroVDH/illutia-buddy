@@ -1,11 +1,10 @@
-export default {
+module.exports = {
 	gameDir: '../',
 	configFileName: 'Illutia.ini',
 	clientExecutable: 'IllutiaGame.exe',
 	notifyOnItem: {
 		'Powerful': 1,
 		'Valiant': 1,
-		'Enraged Cow': 1,
 		'Gold': 1000,
 	},
 	proxyPort: 8080,

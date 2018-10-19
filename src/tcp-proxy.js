@@ -1,9 +1,9 @@
-import net from 'net';
+const net = require('net');
 
 function TCPProxy(options) {
 	if ('undefined' === typeof options.remoteAddress
 		|| 'undefined' === typeof options.remotePort) {
-		throw new Error("Missing remoteAddress or remotePort or localPort");
+		throw new Error("Missing remoteAddress or remotePort");
 	}
 
 	const server = net.createServer(function(localSocket) {
@@ -69,4 +69,4 @@ function TCPProxy(options) {
 	return server;
 }
 
-export default TCPProxy;
+module.exports = TCPProxy;

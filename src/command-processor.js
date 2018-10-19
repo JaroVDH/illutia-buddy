@@ -1,5 +1,5 @@
-import commands, { commandSeparator } from './commands';
-import config from '../config';
+const { commandSeparator, ...commands } = require('./commands');
+const config = require('../config');
 
 const notifyOnItem = config.notifyOnItem;
 
@@ -32,4 +32,4 @@ function processCommand(command, remoteSocket, localSocket) {
 	}
 }
 
-export default processCommand;
+module.exports = processCommand;

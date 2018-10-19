@@ -44,4 +44,4 @@ class ItemDrop {
 
 ItemDrop.identifier = /^DOB[0-9]+/;
 
-export default ItemDrop;
+module.exports = ItemDrop;

@@ -14,4 +14,4 @@ class Talk {
 
 Talk.identifier = /^;.*/;
 
-export default Talk;
+module.exports = Talk;

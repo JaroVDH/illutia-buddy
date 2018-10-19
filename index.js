@@ -1,19 +1,24 @@
-import TCPProxy from './src/tcp-proxy';
-import proxyHandlers from './src/proxy-handlers';
-import config from './config';
-import { setUp, cleanUp } from './src/client-config';
+const TCPProxy = require('./src/tcp-proxy');
+const proxyHandlers = require('./src/proxy-handlers');
+const config = require('./config');
+const { setUp: setUpClient, cleanUp: cleanUpClient } = require('./src/client-config');
 
 const { proxyPort } = config;
 
-process.on('uncaughtException', function(error) {
-	console.error(error);
-});
+function onExit(error) {
+	if (error) {
+		console.error(error);
+	}
+	cleanUpClient();
+	process.exit(error ? 1 : 0);
+}
 
-process.on('error', function(error) {
-	console.error(error);
-});
+process.stdin.resume();
+process.on('uncaughtException', onExit);
+process.on('error', onExit);
+process.on('SIGINT', onExit);
 
-setUp().then(({ serverAddress, serverPort }) => {
+setUpClient().then(({ serverAddress, serverPort }) => {
 	const server = TCPProxy({
 		remoteAddress: serverAddress,
 		remotePort: serverPort,
