@@ -1,7 +1,7 @@
-const { commandSeparator, ...commands } = require('./commands');
+const { commandSeparator, ItemDrop, Message } = require('./commands');
 const config = require('../config');
 
-const notifyOnItem = config.notifyOnItem;
+const { notifyOnItem } = config;
 
 function processCommand(command, remoteSocket, localSocket) {
 	function writeToLocal(data) {
@@ -21,11 +21,13 @@ function processCommand(command, remoteSocket, localSocket) {
 	}
 
 	switch (command.constructor) {
-		case commands.ItemDrop: {
-			if ('undefined' !== typeof notifyOnItem[command.name] && command.quantity >= notifyOnItem[command.name]) {
-				const message = new commands.Message(commands.Message.types.blue, `${command.name} nearby!`);
+		case ItemDrop: {
+			for (let item in notifyOnItem) {
+				if (notifyOnItem.hasOwnProperty(item) && command.name.indexOf(item) !== -1 && command.quantity >= notifyOnItem[item]) {
+					const message = new Message(Message.types.blue, `${command.name} nearby!`);
 
-				writeToLocal(message.toCommandString());
+					writeToLocal(message.toCommandString());
+				}
 			}
 			break;
 		}
