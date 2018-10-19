@@ -20,12 +20,10 @@ function processCommand(command, remoteSocket, localSocket) {
 
 	switch (command.constructor) {
 		case ItemDrop: {
-			for (let idx in notifyOnItem) {
-				if (command.name.indexOf(notifyOnItem[idx]) !== -1) {
-					const message = new Message(Message.types.blue, `${command.name} nearby!`);
+			if ('undefined' !== typeof notifyOnItem[command.name] && command.quantity >= notifyOnItem[command.name]) {
+				const message = new Message(Message.types.blue, `${command.name} nearby!`);
 
-					writeToLocal(message.toCommandString());
-				}
+				writeToLocal(message.toCommandString());
 			}
 			break;
 		}
