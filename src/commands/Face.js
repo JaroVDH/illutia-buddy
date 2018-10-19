@@ -15,4 +15,4 @@ class Face {
 }
 Face.identifier = /^F([0-4])$/;
 
-module.exports = Face;
+export default Face;

@@ -1,4 +1,4 @@
-const net = require("net");
+import net from 'net';
 
 function TCPProxy(options) {
 	if ('undefined' === typeof options.remoteAddress
@@ -69,4 +69,4 @@ function TCPProxy(options) {
 	return server;
 }
 
-module.exports = TCPProxy;
+export default TCPProxy;

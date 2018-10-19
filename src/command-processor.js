@@ -1,5 +1,7 @@
-const { commandSeparator, ItemDrop, Message } = require('./commands');
-const { notifyOnItem } = require('../config');
+import commands, { commandSeparator } from './commands';
+import config from '../config';
+
+const notifyOnItem = config.notifyOnItem;
 
 function processCommand(command, remoteSocket, localSocket) {
 	function writeToLocal(data) {
@@ -19,9 +21,9 @@ function processCommand(command, remoteSocket, localSocket) {
 	}
 
 	switch (command.constructor) {
-		case ItemDrop: {
+		case commands.ItemDrop: {
 			if ('undefined' !== typeof notifyOnItem[command.name] && command.quantity >= notifyOnItem[command.name]) {
-				const message = new Message(Message.types.blue, `${command.name} nearby!`);
+				const message = new commands.Message(commands.Message.types.blue, `${command.name} nearby!`);
 
 				writeToLocal(message.toCommandString());
 			}
@@ -30,4 +32,4 @@ function processCommand(command, remoteSocket, localSocket) {
 	}
 }
 
-module.exports = processCommand;
+export default processCommand;

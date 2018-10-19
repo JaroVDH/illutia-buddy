@@ -1,10 +1,13 @@
-module.exports = {
-	serverAddress: 'goose.ddns.net',
-	serverPort: 2007,
+export default {
+	gameDir: '../',
+	configFileName: 'Illutia.ini',
+	clientExecutable: 'IllutiaGame.exe',
 	notifyOnItem: {
 		'Powerful': 1,
 		'Valiant': 1,
 		'Enraged Cow': 1,
 		'Gold': 1000,
-	}
+	},
+	proxyPort: 8080,
+	proxyHost: '127.0.0.1',
 };

@@ -15,4 +15,4 @@ class Cast {
 }
 Cast.identifier = /^CAST([0-9]+)$/;
 
-module.exports = Cast;
+export default Cast;

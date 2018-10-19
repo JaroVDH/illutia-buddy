@@ -15,4 +15,4 @@ class Move {
 }
 Move.identifier = /^M([0-4])$/;
 
-module.exports = Move;
+export default Move;

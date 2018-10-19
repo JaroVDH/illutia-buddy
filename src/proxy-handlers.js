@@ -1,5 +1,5 @@
-const { commandSeparator, ...commandDefinitions } = require('./commands');
-const processCommand = require('./command-processor');
+import processCommand from './command-processor';
+import commands, { commandSeparator } from './commands';
 
 function toCommandStrings(cb) {
 	let dataBuffer = "";
@@ -16,16 +16,16 @@ function toCommandStrings(cb) {
 }
 
 function commandHandler(commandString, remoteSocket, localSocket) {
-	for (let commandName in commandDefinitions) {
-		if (commandDefinitions[commandName].identifier.test(commandString)) {
-			const command = commandDefinitions[commandName].fromCommandString(commandString);
+	for (let commandName in commands) {
+		if (commands[commandName].identifier.test(commandString)) {
+			const command = commands[commandName].fromCommandString(commandString);
 
 			processCommand(command, remoteSocket, localSocket);
 		}
 	}
 }
 
-module.exports = {
+export default {
 	processToRemoteData: toCommandStrings(commandHandler),
 	processToLocalData: toCommandStrings(commandHandler),
 	onConnect: (e) => console.log('onConnect', e),
