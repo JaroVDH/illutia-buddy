@@ -1,7 +1,7 @@
 const TCPProxy = require('./src/tcp-proxy');
 const proxyHandlers = require('./src/proxy-handlers');
 const config = require('./config');
-const { setUp: setUpClient, cleanUp: cleanUpClient } = require('./src/client-config');
+const { setUp: setUpClient, cleanUp: cleanUpClient, start: startClient } = require('./src/client');
 
 const { proxyPort } = config;
 
@@ -28,8 +28,9 @@ setUpClient().then(({ serverAddress, serverPort }) => {
 	if (server) {
 		server.listen(proxyPort);
 		console.log('Listening on %d, sending to %s:%d', proxyPort, serverAddress, serverPort);
+		startClient().catch(onExit);
 	} else {
 		console.warn('Something went wrong setting up the server!');
 	}
-});
+}).catch(onExit);
 
