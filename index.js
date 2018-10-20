@@ -19,14 +19,14 @@ process.on('error', onExit);
 process.on('SIGINT', onExit);
 
 setUpClient().then(({ serverAddress, serverPort }) => {
-	const server = TCPProxy({
+	const proxy = new TCPProxy({
 		remoteAddress: serverAddress,
 		remotePort: serverPort,
 		...proxyHandlers
 	});
 
-	if (server) {
-		server.listen(proxyPort);
+	if (proxy.server) {
+		proxy.server.listen(proxyPort);
 		console.log('Listening on %d, sending to %s:%d', proxyPort, serverAddress, serverPort);
 		startClient().catch(onExit);
 	} else {

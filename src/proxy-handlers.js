@@ -1,26 +1,30 @@
-const processCommand = require('./command-processor');
 const { commandSeparator, ...commands } = require('./commands');
+const actions = require('./actions');
 
 function toCommandStrings(cb) {
 	let dataBuffer = "";
 
-	return (data, remoteSocket, localSocket) => {
-		const chunks = (dataBuffer + data).split(commandSeparator);
+	return (data, proxy) => {
+		const commandStrings = (dataBuffer + data).split(commandSeparator);
 
-		dataBuffer = chunks.pop();
+		dataBuffer = commandStrings.pop();
 
-		for (let idx in chunks) {
-			cb(chunks[idx], remoteSocket, localSocket);
+		for (let idx in commandStrings) {
+			cb(commandStrings[idx], proxy);
 		}
 	}
 }
 
-function commandHandler(commandString, remoteSocket, localSocket) {
+function commandHandler(commandString, proxy) {
 	for (let commandName in commands) {
 		if (commands[commandName].identifier.test(commandString)) {
 			const command = commands[commandName].fromCommandString(commandString);
 
-			processCommand(command, remoteSocket, localSocket);
+			for (let idx in actions) {
+				if (actions[idx].triggers.indexOf(command.constructor) !== -1) {
+					actions[idx].onCommand(command, proxy);
+				}
+			}
 		}
 	}
 }

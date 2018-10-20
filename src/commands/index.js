@@ -1,3 +1,4 @@
+const BattleText = require('./BattleText');
 const Cast = require('./Cast');
 const Face = require('./Face');
 const ItemDrop = require('./ItemDrop');
@@ -9,7 +10,7 @@ const Talk = require('./Talk');
 const commandSeparator = String.fromCharCode(0x01);
 
 module.exports = {
-	commandSeparator,
+	BattleText,
 	Cast,
 	Face,
 	ItemDrop,
@@ -17,5 +18,5 @@ module.exports = {
 	Move,
 	SystemMessage,
 	Talk,
+	commandSeparator,
 };
-
