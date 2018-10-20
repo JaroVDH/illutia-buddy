@@ -1,22 +1,29 @@
 const { BattleText, Message } = require('../commands');
 
-const tracker = {};
 const creditTag = 'Quest Credit: ';
 
 class QuestCreditTracker {
-	static onCommand(command, proxy) {
+	static onCommand(command, session) {
+		if (!session.activePlayer) {
+			return;
+		}
+
 		if (command.text && command.text.indexOf(creditTag) !== -1) {
 			const questType = command.text.substr(creditTag.length);
 
-			if ('undefined' === typeof tracker[questType]) {
-				tracker[questType] = 1;
-			} else {
-				tracker[questType]++;
+			if ('undefined' === typeof session.activePlayer.meta.questsCredits) {
+				session.activePlayer.meta.questsCredits = {};
 			}
 
-			const message = new Message(Message.types.yellow, `[QUEST] Current session's credit count for '${questType}': ${tracker[questType]}`);
+			if ('undefined' === typeof session.activePlayer.meta.questsCredits[questType]) {
+				session.activePlayer.meta.questsCredits[questType] = 1;
+			} else {
+				session.activePlayer.meta.questsCredits[questType]++;
+			}
 
-			proxy.writeToLocal(message.toCommandString());
+			const message = new Message(Message.types.yellow, `[QUEST] '${questType}': ${session.activePlayer.meta.questsCredits[questType]}`);
+
+			session.writeToLocal(message.toCommandString());
 		}
 	}
 }

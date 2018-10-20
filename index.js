@@ -1,4 +1,4 @@
-const TCPProxy = require('./src/tcp-proxy');
+const TCPProxy = require('./src/TCPProxy');
 const proxyHandlers = require('./src/proxy-handlers');
 const config = require('./config');
 const { setUp: setUpClient, cleanUp: cleanUpClient, start: startClient } = require('./src/client');
