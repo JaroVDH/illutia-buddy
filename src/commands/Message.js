@@ -16,10 +16,14 @@ class Message {
 Message.identifier = /^\$[0-9].*/;
 Message.types = {
 	black: 1,
+	chat: 1,
 	yellow: 2,
+	guild: 2,
 	purple: 3,
+	tell: 3,
 	blue: 6,
-	green: 7,
+	group: 6,
+	server: 7,
 };
 
 module.exports = Message;
