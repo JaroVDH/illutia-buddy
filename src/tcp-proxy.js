@@ -32,7 +32,7 @@ class TCPProxy {
 					this.processToRemoteData(data, this);
 				}
 
-				this.writeToRemote(data)
+				this._writeToRemoteRaw(data)
 			});
 
 			this.remoteSocket.on('data', (data) => {
@@ -40,7 +40,7 @@ class TCPProxy {
 					this.processToLocalData(data, this);
 				}
 
-				this.writeToLocal(data)
+				this._writeToLocalRaw(data)
 			});
 
 			this.localSocket.on('drain', () => {
@@ -69,20 +69,28 @@ class TCPProxy {
 		});
 	}
 
-	writeToLocal(data) {
-		const flushed = this.localSocket.write(data + commandSeparator);
+	_writeToLocalRaw(data) {
+		const flushed = this.localSocket.write(data);
 
 		if (!flushed) {
 			this.remoteSocket.pause();
 		}
 	}
 
-	writeToRemote(data) {
-		const flushed = this.remoteSocket.write(data + commandSeparator);
+	_writeToRemoteRaw(data) {
+		const flushed = this.remoteSocket.write(data);
 
 		if (!flushed) {
 			this.localSocket.pause();
 		}
+	}
+
+	writeToLocal(data) {
+		this._writeToLocalRaw(data + commandSeparator)
+	}
+
+	writeToRemote(data) {
+		this._writeToRemoteRaw(data + commandSeparator)
 	}
 }
 
