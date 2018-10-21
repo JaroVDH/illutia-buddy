@@ -1,11 +1,13 @@
 class MakeCharacter {
-	constructor(entity, type, name, title, suffix, ...rest) {
+	constructor(entity, type, name, title, suffix, a, xPos, yPos, ...rest) {
 		this.entity = entity;
 		this.type = type;
 		this.name = name;
 		this.title = title;
-		this.suffix = suffix;
-
+		this.surname = suffix;
+		this.a = a;
+		this.xPos = xPos;
+		this.yPos = yPos;
 		this.rest = rest;
 	}
 
@@ -16,11 +18,11 @@ class MakeCharacter {
 	}
 
 	toCommandString() {
-		return `MKC${this.entity},${this.type},${this.name},${this.title},${this.suffix},${this.rest.join(',')}`;
+		return `MKC${this.entity},${this.type},${this.name},${this.title},${this.surname},${this.a},${this.xPos},${this.yPos},${this.rest.join(',')}`;
 	}
 }
 
-MakeCharacter.identifier = /^MKC([0-9]+),([0-9]+),([^,]*),([^,]*),([^,]*),(.*)$/;
+MakeCharacter.identifier = /^MKC([0-9]+),([0-9]+),([^,]*),([^,]*),([^,]*),([^,]*),([0-9]+),([0-9]+),(.*)$/;
 MakeCharacter.types = {
 	player: 1,
 	other: 2,
