@@ -29,7 +29,9 @@ class MakeCharacter {
 MakeCharacter.identifier = /^MKC([0-9]+)/;
 MakeCharacter.types = {
 	player: 1,
-	other: 2,
+	mob: 2,
+	vendor: 10,
+	questGiver: 12,
 };
 
 module.exports = MakeCharacter;
