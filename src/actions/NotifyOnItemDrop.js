@@ -1,13 +1,26 @@
-const { notifyOnItemDrop } = require('../../config');
+const { notifyOnItemDrop, notifySettings } = require('../../config');
 const { ItemDrop, Message } = require('../commands');
+const notifier = require('node-notifier');
 
 class NotifyOnItemDrop {
 	static onCommand(command, session) {
 		for (let item in notifyOnItemDrop) {
 			if (notifyOnItemDrop.hasOwnProperty(item) && command.name.indexOf(item) !== -1 && command.quantity >= notifyOnItemDrop[item]) {
-				const message = new Message(Message.types.blue, `[ITEM] ${command.quantity} x ${command.name} dropped nearby! (${command.xPos},${command.yPos})`);
+				const text = `${command.quantity} x ${command.name} dropped nearby! (${command.xPos},${command.yPos})`;
 
-				session.writeToLocal(message.toCommandString());
+				if (notifySettings.itemDrop.message) {
+					const message = new Message(Message.types.blue, `[ITEM] ${text}`);
+
+					session.writeToLocal(message.toCommandString());
+				}
+				if (notifySettings.itemDrop.notification) {
+					notifier.notify({
+						title: '[ITEM]',
+						message: text,
+					})
+				}
+
+				return;
 			}
 		}
 	}
