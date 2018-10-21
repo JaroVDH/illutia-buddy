@@ -11,7 +11,9 @@
   },
   "devDependencies": {},
   "scripts": {
+    "prestart": "npm i",
     "start": "node .",
+    "pretest": "npm i",
     "test": "node test/commands"
   },
   "repository": {
