@@ -1,13 +1,13 @@
 class SystemMessage {
 	constructor(type, text) {
-		this.type = type;
+		this.type = parseInt(type);
 		this.text = text;
 	}
 
 	static fromCommandString(commandString) {
-		const match = commandString.substr(1).match(/([0-9]+),(.*)/);
+		const match = commandString.match(this.identifier);
 
-		return new this(match[1], match[2]);
+		return new this(...match.slice(1));
 	}
 
 	toCommandString() {
@@ -15,6 +15,6 @@ class SystemMessage {
 	}
 }
 
-SystemMessage.identifier = /^\^[0-9]+,.*/;
+SystemMessage.identifier = /^\^([0-9]+),(.*)/;
 
 module.exports = SystemMessage;

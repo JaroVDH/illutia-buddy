@@ -1,6 +1,6 @@
 class Cast {
 	constructor(spellId) {
-		this.spellId = spellId;
+		this.spellId = parseInt(spellId);
 	}
 
 	static fromCommandString(commandString) {

@@ -4,12 +4,12 @@ class ItemDrop {
 		this.b = b;
 		this.c = c;
 		this.d = d;
-		this.xPos = xPos;
-		this.yPos = yPos;
+		this.xPos = parseInt(xPos);
+		this.yPos = parseInt(yPos);
 		this.g = g;
 		this.name = name;
 		this.i = i;
-		this.quantity = quantity;
+		this.quantity = parseInt(quantity);
 		this.k = k;
 		this.l = l;
 		this.m = m;

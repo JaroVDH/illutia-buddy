@@ -1,20 +1,24 @@
 class MakeCharacter {
 	constructor(entity, type, name, title, suffix, a, xPos, yPos, ...rest) {
-		this.entity = entity;
-		this.type = type;
+		this.entity = parseInt(entity);
+		this.type = parseInt(type);
 		this.name = name;
 		this.title = title;
 		this.surname = suffix;
 		this.a = a;
-		this.xPos = xPos;
-		this.yPos = yPos;
+		this.xPos = parseInt(xPos);
+		this.yPos = parseInt(yPos);
 		this.rest = rest;
+
+		if (Object.values(MakeCharacter.types).indexOf(this.type) === -1) {
+			console.log('Unknown type for Make Character', this);
+		}
 	}
 
 	static fromCommandString(commandString) {
-		const match = commandString.match(this.identifier);
+		const chunks = commandString.substr(3).split(',');
 
-		return new this(...match.slice(1));
+		return new this(...chunks);
 	}
 
 	toCommandString() {
@@ -22,7 +26,7 @@ class MakeCharacter {
 	}
 }
 
-MakeCharacter.identifier = /^MKC([0-9]+),([0-9]+),([^,]*),([^,]*),([^,]*),([^,]*),([0-9]+),([0-9]+),(.*)$/;
+MakeCharacter.identifier = /^MKC([0-9]+)/;
 MakeCharacter.types = {
 	player: 1,
 	other: 2,

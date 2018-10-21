@@ -1,7 +1,7 @@
 class BattleText {
 	constructor(target, type, text, source) {
-		this.target = target;
-		this.type = type;
+		this.target = parseInt(target);
+		this.type = parseInt(type);
 		this.text = text;
 		this.source = source;
 	}

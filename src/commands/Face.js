@@ -1,6 +1,6 @@
 class Face {
 	constructor(direction) {
-		this.direction = direction;
+		this.direction = parseInt(direction);
 	}
 
 	static fromCommandString(commandString) {

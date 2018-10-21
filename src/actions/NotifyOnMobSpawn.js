@@ -4,10 +4,6 @@ const notifier = require('node-notifier');
 
 class NotifyOnMobSpawn {
 	static onCommand(command, session) {
-		if (Object.values(MakeCharacter.types).indexOf(command.type) === -1) {
-			console.log('Unknown type for Make Character', command);
-		}
-
 		for (let i = 0; i < notifyOnMobSpawn.length; i++) {
 			if (command.name.indexOf(notifyOnMobSpawn[i]) !== -1) {
 				const text = `${command.name} spawned nearby! (${command.xPos},${command.yPos})`;

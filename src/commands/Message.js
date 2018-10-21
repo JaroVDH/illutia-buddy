@@ -1,11 +1,11 @@
 class Message {
 	constructor(type, text) {
-		this.type = type;
+		this.type = parseInt(type);
 		this.text = text;
 	}
 
 	static fromCommandString(commandString) {
-		return new this(commandString.substr(0, 1), commandString.substr(2));
+		return new this(commandString.substr(1, 1), commandString.substr(2));
 	}
 
 	toCommandString() {
