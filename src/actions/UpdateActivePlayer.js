@@ -1,8 +1,12 @@
 const Player = require('../models/Player');
-const { MakePlayer } = require('../commands');
+const { MakeCharacter } = require('../commands');
 
 class UpdateActivePlayer {
 	static onCommand(command, session) {
+		if (command.type !== MakeCharacter.types.player) {
+			return;
+		}
+
 		if (session.activePlayer) {
 			session.activePlayer.update(command);
 		} else {
@@ -11,6 +15,6 @@ class UpdateActivePlayer {
 	}
 }
 
-UpdateActivePlayer.triggers = [MakePlayer];
+UpdateActivePlayer.triggers = [MakeCharacter];
 
 module.exports = UpdateActivePlayer;
