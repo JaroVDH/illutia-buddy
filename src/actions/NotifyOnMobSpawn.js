@@ -19,9 +19,9 @@ class NotifyOnMobSpawn {
 						message: text,
 					})
 				}
-			}
 
-			return;
+				return;
+			}
 		}
 	}
 }
