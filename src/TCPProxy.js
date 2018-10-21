@@ -55,7 +55,7 @@ class TCPProxy {
 				remoteSocket.resume();
 			});
 
-			this.remoteSocket.on('drain', () => {
+			remoteSocket.on('drain', () => {
 				localSocket.resume();
 			});
 
