@@ -1,9 +1,7 @@
 const TCPProxy = require('./src/TCPProxy');
 const proxyHandlers = require('./src/proxy-handlers');
-const config = require('./config');
+const { proxyPort } = require('./config');
 const { setUp: setUpClient, cleanUp: cleanUpClient, start: startClient } = require('./src/client');
-
-const { proxyPort } = config;
 
 function onExit(error) {
 	if (error) {

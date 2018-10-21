@@ -32,10 +32,10 @@ class TCPProxy {
 					this.processToRemoteData(data, session);
 				}
 
-				const flushed = localSocket.write(data);
+				const flushed = remoteSocket.write(data);
 
 				if (!flushed) {
-					remoteSocket.pause();
+					localSocket.pause();
 				}
 			});
 
@@ -44,10 +44,10 @@ class TCPProxy {
 					this.processToLocalData(data, session);
 				}
 
-				const flushed = remoteSocket.write(data);
+				const flushed = localSocket.write(data);
 
 				if (!flushed) {
-					localSocket.pause();
+					remoteSocket.pause();
 				}
 			});
 
