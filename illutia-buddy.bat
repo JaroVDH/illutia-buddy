@@ -1,4 +1,5 @@
 @echo off
 git pull
-npm start
+npm i
+node .
 pause
