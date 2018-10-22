@@ -5,9 +5,11 @@ A proxy between your Illutia client and the server it connects to. It provides s
 
 
 ## Usage
-`illutia-buddy.bat` is provided to update. Or just run this node project with `node .`.
+`illutia-buddy.bat` is provided to update and start the app. Or just run this project with `node .`
+
 Project will automatically set up and start up the Illutia game client for use.
-Adjust `config.js to your needs.
+
+Adjust `config.js` to your needs.
 
 ## Unstable!
 This is still highly unstable. I advice against using it as is. I'll make a release branch when I consider it stable.
