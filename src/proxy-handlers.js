@@ -1,4 +1,4 @@
-const { commandSeparator, ...commands } = require('./commands');
+const { commandSeparator, client: clientCommands, server: serverCommands } = require('./commands');
 const actions = require('./actions');
 
 function toCommandStrings(cb) {
@@ -15,23 +15,25 @@ function toCommandStrings(cb) {
 	}
 }
 
-function commandHandler(commandString, session) {
-	for (let commandName in commands) {
-		if (commands[commandName].identifier.test(commandString)) {
-			const command = commands[commandName].fromCommandString(commandString);
+function commandHandler(commands) {
+	return (commandString, session) => {
+		for (let commandName in commands) {
+			if (commands[commandName].identifier.test(commandString)) {
+				const command = commands[commandName].fromCommandString(commandString);
 
-			for (let idx in actions) {
-				if (actions[idx].triggers.indexOf(command.constructor) !== -1) {
-					actions[idx].onCommand(command, session);
+				for (let idx in actions) {
+					if (actions[idx].triggers.indexOf(command.constructor) !== -1) {
+						actions[idx].onCommand(command, session);
+					}
 				}
 			}
 		}
-	}
+	};
 }
 
 function cleanupSession(hasError, session) {
 	if (hasError) {
-		console.warn(hasError);
+		console.warn('cleanupSession', hasError);
 	}
 
 	if (session.activePlayer) {
@@ -40,8 +42,8 @@ function cleanupSession(hasError, session) {
 }
 
 module.exports = {
-	processToRemoteData: toCommandStrings(commandHandler),
-	processToLocalData: toCommandStrings(commandHandler),
+	processToRemoteData: toCommandStrings(commandHandler(clientCommands)),
+	processToLocalData: toCommandStrings(commandHandler(serverCommands)),
 	onLocalClose: cleanupSession,
 	onRemoteClose: cleanupSession,
 	onConnect: (e) => console.log('onConnect', e),

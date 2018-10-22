@@ -1,5 +1,5 @@
 const { notifyOnItemDrop, notifySettings } = require('../../config');
-const { ItemDrop, Message } = require('../commands');
+const { ItemDrop, Message } = require('../commands/server');
 const notifier = require('node-notifier');
 
 class NotifyOnItemDrop {

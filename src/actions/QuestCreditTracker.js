@@ -1,4 +1,4 @@
-const { BattleText, Message } = require('../commands');
+const { BattleText, Message } = require('../commands/server');
 
 const creditTag = 'Quest Credit: ';
 

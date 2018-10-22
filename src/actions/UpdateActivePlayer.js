@@ -1,5 +1,5 @@
 const Player = require('../models/Player');
-const { MakeCharacter } = require('../commands');
+const { MakeCharacter } = require('../commands/server');
 
 class UpdateActivePlayer {
 	static onCommand(/** MakeCharacter */ command, /** Session */ session) {

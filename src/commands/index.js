@@ -1,26 +1,10 @@
-const BattleText = require('./BattleText');
-const Cast = require('./Cast');
-const Face = require('./Face');
-const FakeCommand = require('./FakeCommand');
-const ItemDrop = require('./ItemDrop');
-const MakeCharacter = require('./MakeCharacter');
-const Message = require('./Message');
-const Move = require('./Move');
-const SystemMessage = require('./SystemMessage');
-const Talk = require('./Talk');
+const client = require('./client');
+const server = require('./server');
 
 const commandSeparator = String.fromCharCode(0x01);
 
 module.exports = {
-	BattleText,
-	Cast,
-	Face,
-	FakeCommand,
-	ItemDrop,
-	MakeCharacter,
-	Message,
-	Move,
-	SystemMessage,
-	Talk,
+	client,
+	server,
 	commandSeparator,
 };

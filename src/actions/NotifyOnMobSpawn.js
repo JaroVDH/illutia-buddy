@@ -1,5 +1,5 @@
 const { notifyOnMobSpawn, notifySettings } = require('../../config');
-const { MakeCharacter, Message } = require('../commands');
+const { MakeCharacter, Message } = require('../commands/server');
 const notifier = require('node-notifier');
 
 class NotifyOnMobSpawn {

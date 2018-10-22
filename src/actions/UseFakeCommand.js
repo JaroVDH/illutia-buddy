@@ -1,4 +1,4 @@
-const { FakeCommand } = require('../commands');
+const { FakeCommand } = require('../commands/client');
 
 class UseFakeCommand {
 	static onCommand(/** FakeCommand */ command, /** Session */ session) {
