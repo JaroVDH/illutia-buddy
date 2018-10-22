@@ -3,7 +3,7 @@ const { MakeCharacter, Message } = require('../commands');
 const notifier = require('node-notifier');
 
 class NotifyOnMobSpawn {
-	static onCommand(command, session) {
+	static onCommand(/** MakeCharacter */ command, /** Session */ session) {
 		for (let i = 0; i < notifyOnMobSpawn.length; i++) {
 			if (command.name.indexOf(notifyOnMobSpawn[i]) !== -1) {
 				const text = `${command.name} spawned nearby! (${command.xPos},${command.yPos})`;

@@ -4,6 +4,7 @@ class Session {
 	constructor(localSocket, remoteSocket) {
 		this.localSocket = localSocket;
 		this.remoteSocket = remoteSocket;
+		this.activePlayer = false;
 	}
 
 	writeToLocal(data) {

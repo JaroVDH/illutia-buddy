@@ -3,7 +3,7 @@ const { BattleText, Message } = require('../commands');
 const creditTag = 'Quest Credit: ';
 
 class QuestCreditTracker {
-	static onCommand(command, session) {
+	static onCommand(/** BattleText */ command, /** Session */ session) {
 		if (!session.activePlayer) {
 			return;
 		}

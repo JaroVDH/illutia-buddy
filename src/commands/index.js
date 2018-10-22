@@ -1,6 +1,7 @@
 const BattleText = require('./BattleText');
 const Cast = require('./Cast');
 const Face = require('./Face');
+const FakeCommand = require('./FakeCommand');
 const ItemDrop = require('./ItemDrop');
 const MakeCharacter = require('./MakeCharacter');
 const Message = require('./Message');
@@ -14,6 +15,7 @@ module.exports = {
 	BattleText,
 	Cast,
 	Face,
+	FakeCommand,
 	ItemDrop,
 	MakeCharacter,
 	Message,
