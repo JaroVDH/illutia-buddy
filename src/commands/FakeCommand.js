@@ -1,6 +1,6 @@
 class FakeCommand {
 	constructor(target, commandString) {
-		this.target = this.types[target] || this.types.client;
+		this.target = FakeCommand.types[target] || FakeCommand.types.client;
 		this.commandString = commandString;
 	}
 
