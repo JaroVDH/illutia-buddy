@@ -31,6 +31,7 @@ MakeCharacter.types = {
 	player: 1,
 	mob: 2,
 	vendor: 10,
+	banker: 11,
 	questGiver: 12,
 };
 
