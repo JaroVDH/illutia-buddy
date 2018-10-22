@@ -1,5 +1,5 @@
 @echo off
 git pull
-npm i
+call npm i
 node .
 pause

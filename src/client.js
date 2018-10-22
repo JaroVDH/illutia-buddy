@@ -55,8 +55,6 @@ function cleanUp() {
 function start() {
 	return new Promise((resolve, reject) => {
 		execFile(gameDir + clientExecutable, function(err, data) {
-			console.log('execFile', data.toString());
-
 			if (err) {
 				return reject(err);
 			}
